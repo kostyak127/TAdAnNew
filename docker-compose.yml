@@ -1,0 +1,18 @@
+version: '3'
+services:
+  db:
+    image: postgres
+    container_name: db
+    env_file:
+      - .env
+
+  bot:
+    container_name: bot
+    build:
+      context: .
+    command: python app.py
+    restart: always
+    env_file:
+      - .env
+    depends_on:
+      - db
