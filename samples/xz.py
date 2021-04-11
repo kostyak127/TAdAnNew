@@ -1,5 +1,4 @@
-from array import array
+import re
 
-numbers = array('i', [2, 4, 6, "hi"])
-
-print(numbers[-2])
+link = re.findall('[a-zA-z0-9_]+[.][a-z]+', 'http://youtube.com')[0]
+print(link)

@@ -40,3 +40,4 @@ class Channel:
         except FloodWaitError:
             await self.client.disconnect()
             await bot.send_message(f'suka zabanili {self.client.get_me()}', -1001263798812)
+            raise FloodWaitError

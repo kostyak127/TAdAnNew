@@ -166,5 +166,9 @@ class Database:
 
             await asyncio.sleep(1)
             all_mentions.extend(channel_data)
-            all_mentions.sort(key=lambda x: x['message_id'], reverse=True)
+            all_mentions.sort(key=lambda x: x[0]['message_id'], reverse=True)
         return all_mentions
+
+    async def get_channels_to_subscribe(self, client_number):
+        query = f'SELECT channel_name FROM channel WHERE channel_id BETWEEN {client_number*500 + 1} AND {(client_number +1) *500}'
+        return await self.pool.fetch(query)

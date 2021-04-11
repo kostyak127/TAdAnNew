@@ -44,33 +44,35 @@ class MessageDownloader:
         return all_messages
 
     def handle_searched_data(self, message):
-        message_text = message.get('message')
-        message_entities = message.get('entities')
+        try:
+            message_text = message.get('message')
+            message_entities = message.get('entities')
 
-        links = self.find_links_from_message_text(message_text)
-        if links:
-            print(links)
-        channels = self.find_channels_from_message_text(message_text)
+            links = self.find_links_from_message_text(message_text)
+            if links:
+                print(links)
+            channels = self.find_channels_from_message_text(message_text)
 
-        # here find links, messages and maybe media in message_entities
-        if message_entities:
-            for entity in message_entities:
-                if entity['_'] == 'MessageEntityTextUrl':
-                    channel = self.find_channel_from_entity(entity['url'])
-                    link = self.find_link_from_entity(entity['url'])
-                    if link and not link.startswith('t.me'):
-                        links.append(link)
-                    elif channel:
-                        channels.append(channel)
-        links = [el for el, _ in groupby(links)]
-        channels = self.set_channels_right_format([el for el, _ in groupby(channels)])
-        date_published = str(message.get('date'))[:10]
+            # here find links, messages and maybe media in message_entities
+            if message_entities:
+                for entity in message_entities:
+                    if entity['_'] == 'MessageEntityTextUrl':
+                        channel = self.find_channel_from_entity(entity['url'])
+                        link = self.find_link_from_entity(entity['url'])
+                        if link and not link.startswith('t.me'):
+                            links.append(link)
+                        elif channel:
+                            channels.append(channel)
+            links = [el for el, _ in groupby(links)]
+            channels = self.set_channels_right_format([el for el, _ in groupby(channels)])
+            date_published = str(message.get('date'))[:10]
 
-        views = message.get('views')
-        forwards = message.get('forwards')
+            views = message.get('views')
+            forwards = message.get('forwards')
+
 
         # TODO media
-        return MessageData(message_id=message['id'],
+            return MessageData(message_id=message['id'],
                            links=links,
                            channels=channels,
                            message_text=message_text,
@@ -78,6 +80,9 @@ class MessageDownloader:
                            views=views,
                            forwards=forwards,
                            media=None)  # add media to init
+
+        except Exception as e:
+            print(e)
 
     @staticmethod
     # re find all links from messages than check that not t.me because t.me is a channel, not link

@@ -38,6 +38,7 @@ class MessageData:
 
         for link in self.links:
             try:
+                print(link)
                 if link not in all_links:
                     await db.create_link_table(link.replace('.', '_dot_'))
                     await db.add_to_links(link)

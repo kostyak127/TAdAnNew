@@ -22,7 +22,7 @@ class LinkShower:
                     writer.writerows(data)
                     result = f'@{self.link}_data.csv'
             elif len(data) != 0:
-                result = f'Домен <b>{self.link}</b> упоминался каналами:\n'
+                result = f'Домен <b>{self.link.replace("_dot_", ".")}</b> упоминался каналами:\n'
                 for key in data:
                     result += f'<b>{key[0]} {key[1]}</b> {self.get_number_format(key[1])}\n'
             else:
