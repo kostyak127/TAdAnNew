@@ -4,6 +4,8 @@ from bot.loader import db, bot
 
 
 async def on_startup(dp):
+    from web.handle_request import app
+    app.run()
     requests.post('http://127.0.0.1:8000/connect_to_db', data={
         'password': 'my_passworD',
     })

@@ -3,7 +3,6 @@ import re
 from sanic import Sanic
 from sanic.request import Request
 from sanic.response import html, json
-from data.show.link_data import LinkShower
 from bot.loader import db
 
 app = Sanic(__name__)
@@ -99,7 +98,3 @@ async def connect_to_db(request: Request):
         return json({"success": True})
     else:
         return json(body={"success": False}, status=403)
-
-
-if __name__ == "__main__":
-    app.run(host='0.0.0.0')
