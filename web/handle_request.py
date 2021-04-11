@@ -4,7 +4,7 @@ from sanic import Sanic
 from sanic.request import Request
 from sanic.response import html, json
 
-from web.database import Database
+from database import Database
 
 db = Database()
 app = Sanic(__name__)
@@ -100,3 +100,6 @@ async def connect_to_db(request: Request):
         return json({"success": True})
     else:
         return json(body={"success": False}, status=403)
+
+if __name__ == '__main__':
+    app.run()

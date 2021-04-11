@@ -1,8 +1,9 @@
 import asyncio
 import datetime
-from typing import Optional
+from typing import Optional, List, NoReturn
 
 import asyncpg
+from asyncpg import Record
 from asyncpg.pool import Pool
 
 
