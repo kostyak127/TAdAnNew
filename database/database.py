@@ -25,8 +25,8 @@ class Database:
             user='postgres',
             password='2KosTyA14',
             host='localhost',
-            database='TAdAn',
-            port=5090
+            database='tadannew',
+            port=5432
         )
         self.pool = pool
 
