@@ -3,8 +3,10 @@ import re
 from sanic import Sanic
 from sanic.request import Request
 from sanic.response import html, json
-from bot.loader import db
 
+from web.database import Database
+
+db = Database()
 app = Sanic(__name__)
 
 
