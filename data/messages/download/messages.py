@@ -70,16 +70,15 @@ class MessageDownloader:
             views = message.get('views')
             forwards = message.get('forwards')
 
-
-        # TODO media
+            # TODO media
             return MessageData(message_id=message['id'],
-                           links=links,
-                           channels=channels,
-                           message_text=message_text,
-                           date_published=date_published,
-                           views=views,
-                           forwards=forwards,
-                           media=None)  # add media to init
+                               links=links,
+                               channels=channels,
+                               message_text=message_text,
+                               date_published=date_published,
+                               views=views,
+                               forwards=forwards,
+                               media=None)  # add media to init
 
         except Exception as e:
             print(e)

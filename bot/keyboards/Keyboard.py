@@ -30,7 +30,7 @@ class DownloadMessagesInlineKeyboard:
         self.table_type = table_type
         self.button = types.InlineKeyboardButton(text=self.button_text,
                                                  callback_data=f'{table_name}/{table_type}',
-                                                 url=f'http://127.0.0.1:8000/{table_type}/'
+                                                 url=f'tadan.site/{table_type}/'
                                                      f'{table_name.replace(".", "_dot_")}')
 
     @property

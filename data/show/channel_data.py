@@ -4,7 +4,6 @@ from typing import List
 from asyncpg import Record
 
 from bot.loader import db
-from web.config import WebConfig
 
 
 class ChannelShower:
@@ -51,7 +50,7 @@ class ChannelShower:
     async def show_channel_messages_data(self) -> str:
         data_to_csv = [[item['message_id'], item['date_published'], item['mention'],
                         item['text_message'], item['views'], item['forwards'],
-                        rf'{WebConfig.ip}:{WebConfig.port}/{self.channel_name}/{item["message_id"]}']
+                        rf'tadan.site/{self.channel_name}/{item["message_id"]}']
                        for item in await db.get_messages_data(self.channel_name)]
         with open(f'{self.channel_name}_messages_data.csv', 'w', newline="", encoding='cp1251') as outfile:
             columns = ['ID сообщения', 'Дата публикации', 'Имя канала/Ссылка', 'Текст сообщения',
